@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hyggy</title>
+	<link rel="icon" type="image/png" href="../images/DarkBlue.png">
+	<script src="../libs/react.production.min.js"></script>
+	<script src="../libs/react-dom.production.min.js"></script>
+	<script src="../libs/babel.min.js"></script>
+	<script src="../libs/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./css/MainPageHeader-styles.css" type="text/css">
+	<link rel="stylesheet" href="./css/MainPageBorder-styles.css" type="text/css">
+	<link rel="stylesheet" href="./css/MainPageBody-styles.css" type="text/css">
+	<link rel="stylesheet" href="./css/MainPageFooter-styles.css" type="text/css">
+<body>
+    
+	<div id="app"></div>
+<!-- ============================================================================================ -->
+<!-- =================================== Хедер (Header) ================================ -->
+
+	<!-- 0. Компонент, шапка головної сторінки сайту -->
+    <script type="text/babel" src="./jsx-Header/MainPageHeader.jsx"></script>
+	<!-- 1. Компонент, шапка головної сторінки сайту -->
+    <script type="text/babel" src="./jsx-Header/MainPageSale.jsx"></script>
+	<!-- 2. Компонент, шапка головної сторінки сайту -->
+    <script type="text/babel" src="./jsx-Header/MainPageHeaderLogo.jsx"></script>
+	<!-- 3. Компонент, шапка головної сторінки сайту -->
+    <script type="text/babel" src="./jsx-Header/MainPageHeaderMenu.jsx"></script>
+	<!-- 4. Компонент, шапка головної сторінки сайту -->
+    <script type="text/babel" src="./jsx-Header/MainPageHeaderSearch.jsx"></script>
+	<!-- 5. Компонент, шапка головної сторінки сайту -->
+    <script type="text/babel" src="./jsx-Header/MainPageHeaderUser.jsx"></script>
+	<!-- 6. Компонент, шапка головної сторінки сайту -->
+    <script type="text/babel" src="./jsx-Header/MainPageHeaderBasket.jsx"></script>
+	<!-- 7. Компонент, шапка головної сторінки сайту -->
+    <script type="text/babel" src="./jsx-Header/MainPageHeaderGeo.jsx"></script>
+	<!-- 8. Компонент, шапка головної сторінки сайту -->
+    <script type="text/babel" src="./jsx-Header/MainPageHeaderNavbar.jsx"></script>
+	
+<!-- =================================Головна сторінка (бордер)============================ -->
+<!-- 0. Компонент, шапка головної сторінки сайту -->
+<script type="text/babel" src="./jsx-Border/MainPageBorder.jsx"></script>
+
+
+<!-- ================================= Головна сторінка (body)================================ -->
+	<!-- 0. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBody.jsx"></script>
+	<!-- 1. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodySale.jsx"></script>
+	<!-- 2. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodyCategory.jsx"></script>
+	<!-- 3. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodyCaption.jsx"></script>
+	<!-- 4. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodyBrand.jsx"></script>
+	<!-- 5. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodyBrandCaption.jsx"></script>
+	<!-- 6. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodyBlog.jsx"></script>
+	<!-- 7. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodyBlogCaption.jsx"></script>
+	<!-- 8. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodyBlogButton.jsx"></script>
+	<!-- 9. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodyAboutUs.jsx"></script>
+	<!-- 10. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodyAboutUs.jsx"></script>
+	<!-- 11. Компонент, Головна сторінка -->
+	<script type="text/babel" src="./jsx-Body/MainPageBodySubscriptionForm.jsx"></script>
+
+<!-- ===================================Футер (Footer)================================== -->
+<!-- 0. Компонент, Футер -->
+<script type="text/babel" src="./jsx-Footer/MainPageFooter.jsx"></script>
+<!-- 1. Компонент, Футер -->
+<script type="text/babel" src="./jsx-Footer/MainPageFooterList.jsx"></script>
+<!-- 2. Компонент, Футер -->
+<script type="text/babel" src="./jsx-Footer/MainPageFooterMessenger.jsx"></script>
+<!-- 3. Компонент, Футер -->
+<script type="text/babel" src="./jsx-Footer/MainPageFooterAddress.jsx"></script>
+
+<!-- ================== =============== ОСНОВНИЙ СКРИПТ РЕНДЕРУ ========== ====================== -->
+
+    <script type="text/babel">
+		let headerData;
+		let borderData;
+		let bodyData;
+		let bodyFooter;
+		Promise.all([
+			fetch('./json/mainPageHeaderInfo.json').
+			then(resp => resp.json()).
+			then((data => {
+				//=======================> Reading header data from JSON file <================================
+				headerData = data.headerData; 
+			})),
+			fetch('./json/mainPageBorder.json').
+			then(resp => resp.json()).
+			then((data => {
+				//=======================> Reading border data from JSON file <================================
+				borderData = data.borderData; 
+			})),
+			fetch('./json/mainPageBody.json').
+			then(resp => resp.json()).
+			then((data => {
+				//=======================> Reading border data from JSON file <================================
+				bodyData = data.bodyData; 
+			})),
+			fetch('./json/mainPageFooter.json').
+			then(resp => resp.json()).
+			then((data => {
+				//=======================> Reading border data from JSON file <================================
+				footerData = data.footerData; 
+			})),
+		]).then(
+		()=>{
+				const rootNode = document.getElementById("app");    
+				const root = ReactDOM.createRoot(rootNode);
+				root.render(
+					<React.StrictMode>
+						<div>
+							<MainPageHeader headerData={headerData}/>
+							<MainPageBorder borderData={borderData}/>
+							<MainPageBody bodyData={bodyData}/>
+							<MainPageFooter footerData={footerData}/>
+						</div>
+					</React.StrictMode> 
+				);
+			}
+		)
+    </script>
+</body>
+</html>
